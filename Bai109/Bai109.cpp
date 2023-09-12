@@ -1,20 +1,70 @@
-﻿// Bai109.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿#include <iostream>
+#include <vector>
+#include <iomanip>
+using namespace std;
 
-#include <iostream>
+void Nhap(int[], int&);
+void Xuat(int[], int);
+
+int ucln(int, int);
+int bcnn(int, int);
+int TimBCNN(int[], int);
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	int b[500];
+	int k;
+
+	cout << "\nMang:\n";
+	Nhap(b, k);
+	cout << "Mang ban dau:";
+	Xuat(b, k);
+
+	int kq = TimBCNN(b, k);
+	cout << "\nBCNN la: " << kq;
+
+	return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void Nhap(int a[], int& n)
+{
+	cout << "Nhap n : ";
+	cin >> n;
+	srand(time(NULL));
+	for (int i = 0; i <= n - 1; i++)
+		a[i] = rand() % (200 + 1);
+}
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+void Xuat(int a[], int n)
+{
+	cout << n << endl;
+	for (int i = 0; i <= n - 1; i++)
+		cout << setw(10) << a[i];
+}
+
+int ucln(int a, int b)
+{
+	a = abs(a);
+	b = abs(b);
+	while (a * b != 0)
+	{
+		if (a > b)
+			a = a - b;
+		else
+			b = b - a;
+	}
+	return (a + b);
+}
+
+int bcnn(int a, int b)
+{
+	return abs(a * b) / ucln(a, b);
+}
+
+int TimBCNN(int a[], int n)
+{
+	int lc = a[0];
+	for (int i = 0; i < n; i++)
+		lc = bcnn(lc, a[i]);
+	return lc;
+}
