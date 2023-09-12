@@ -1,36 +1,33 @@
 #include <iostream>
-#include <vector>
 #include <iomanip>
 using namespace std;
 
-void Nhap(vector <float>&);
-void Xuat(vector <float>);
+void Nhap(float[], int&);
+void Xuat(float[], int);
 
 int main()
 {
-    vector <float> c;
-    cout << "\nVector:\n";
-    Nhap(c);
-    cout << "Vector ban dau:";
-    Xuat(c);
-	return 0;
+    float b[500];
+    int k;
+
+    cout << "Mang:\n";
+    Nhap(b, k);
+    cout << "Mang ban dau:";
+    Xuat(b, k);
+
 }
 
-void Nhap(vector <float>& a)
+void Nhap(float a[], int& n)
 {
-    int n;
-    cout << "Nhap n:";
+    cout << "Nhap n: ";
     cin >> n;
     srand(time(NULL));
     for (int i = 0; i < n; i++)
-    {
-        float x = -100.0 + (rand() / (RAND_MAX / (100.0 - (-100.0))));
-        a.push_back(x);
-    }
+        a[i] = -100.0 + (rand() / (RAND_MAX / (100.0 - (-100.0))));
 }
 
-void Xuat(vector <float>a)
+void Xuat(float a[], int n)
 {
-    for (int i = 0; i < a.size(); i++)
+    for (int i = 0; i < n; i++)
         cout << setw(10) << setprecision(5) << a[i];
 }

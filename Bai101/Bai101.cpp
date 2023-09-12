@@ -12,6 +12,18 @@ int TimGiaTri(int[], int);
 
 int main()
 {
+	int b[500];
+	int k;
+
+	cout << "\nMang:\n";
+	Nhap(b, k);
+	cout << "Mang ban dau:";
+	Xuat(b, k);
+
+	if (TimGiaTri(b, k) != 0)
+		cout << "\nSo nguyen to lon nhat la: " << TimGiaTri(b, k);
+	else
+		cout << "\nMang khong co so nguyen to";
 
 	return 0;
 }
@@ -42,4 +54,23 @@ bool ktNguyenTo(int k)
 	if (dem == 2)
 		return true;
 	return false;
+}
+
+int NguyenToDau(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		if (ktNguyenTo(a[i]))
+			return a[i];
+	return 0;
+}
+
+int TimGiaTri(int a[], int n)
+{
+	int lc = NguyenToDau(a, n);
+	if (lc == 0)
+		return 0;
+	for (int i = 0; i < n; i++)
+		if (ktNguyenTo(a[i]) && a[i] > lc)
+			lc = a[i];
+	return lc;
 }
