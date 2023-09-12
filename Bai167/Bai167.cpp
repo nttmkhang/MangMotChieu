@@ -19,12 +19,8 @@ int main()
     cout << "Mang ban dau:";
     Xuat(b, k);
 
-    int x;
-    cout << "\nNhap x: ";
-    cin >> x;
-
-    XoaViTri(b, k, x);
-    cout << "Mang sau khi xoa trung x: ";
+    XoaTrung(b, k);
+    cout << "\nMang sau khi xoa trung x: ";
     Xuat(b, k);
 
     return 1;
