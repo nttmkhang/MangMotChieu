@@ -1,20 +1,64 @@
-﻿// Bai103.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿#include <iostream>
+#include <vector>
+#include <iomanip>
+using namespace std;
 
-#include <iostream>
+void Nhap(int[], int&);
+void Xuat(int[], int);
+
+int ChanDau(int[], int);
+int ChanNhoNhat(int[], int);
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	int b[500];
+	int k;
+
+	cout << "\nMang:\n";
+	Nhap(b, k);
+	cout << "Mang ban dau:";
+	Xuat(b, k);
+
+	if (ChanNhoNhat(b, k) != -1)
+		cout << "\nGia tri chan nho nhat la: " << ChanNhoNhat(b, k);
+	else
+		cout << "\nMang khong co gia tri chan";
+
+	return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void Nhap(int a[], int& n)
+{
+	cout << "Nhap n : ";
+	cin >> n;
+	srand(time(NULL));
+	for (int i = 0; i <= n - 1; i++)
+		a[i] = rand() % (200 + 1) - 100;
+}
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+
+void Xuat(int a[], int n)
+{
+	cout << n << endl;
+	for (int i = 0; i <= n - 1; i++)
+		cout << setw(10) << a[i];
+}
+
+int ChanDau(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		if (a[i] % 2 == 0)
+			return a[i];
+	return -1;
+}
+
+int ChanNhoNhat(int a[], int n)
+{
+	int lc = ChanDau(a, n);
+	if (lc == -1)
+		return -1;
+	for (int i = 0; i < n; i++)
+		if (a[i] % 2 == 0 && a[i] < lc)
+		lc = a[i];
+	return lc;
+}
